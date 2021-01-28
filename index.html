@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="icon" href="img/icon.png" sizes="16x16 24x24 32x32 48x48 64x64 128x128">
+
+</head>
+<body>
+    
+    <header>
+        <img src="img/logo-alex.jpg" alt="Alex's logo">
+        <div class="socials">
+            <a href="https://github.com/alexmikhajlovic" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://instagram.com/alexmikhajlovic" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="http://" target="_blank" rel="noopener noreferrer"><i class="fab fa-vuejs"></i></a>
+        </div>
+    </header>
+    
+    <div id="app">
+        <!-- Input to add new To-Do -->
+        <div class="input-addlist">
+            <input type="text" placeholder="Add new To-do" minlength="3"> <i class="fas fa-plus-circle" title="Add"></i>
+        </div>
+
+        <!-- Included To-Do-List -->
+        <div class="to-do">
+            <h1> <i class="fas fa-list-ul"></i> To-Do List </h1>
+
+            <ul v-if="toDoList.length > 0">
+                <li v-for="(toDo,index) in toDoList">
+                    <span>&middot; {{ toDo }}</span>
+                    <i class="fas fa-times" @click="deleteToDo(index)" title="Remove"></i>
+                </li>
+                <span class="remove-btn" @click="removeAllToDo(index)">Remove All</span>
+            </ul>
+            <p v-else><em>Empty list</em></p>
+            
+        </div>
+
+        <!-- Deleted To-Do -->
+        <div class="deleted-to-do">
+            <h2> <i class="fas fa-trash-alt"></i> Deleted </h2>
+
+            <ul v-if="removedToDo.length > 0">
+                <li v-for="(removed, index) in removedToDo">
+                    <span>{{ removed }}</span> 
+                    <div class="icons">
+                        <i class="fas fa-trash-restore-alt" @click="restoreToDo(index)" title="Restore item"></i>
+                        <i class="fas fa-times" @click="deleteToDoDeleted(index)" title="Delete"></i>
+                    </div>
+                </li>
+                <span class="remove-btn">Permanently delete</span>
+            </ul>
+            <p v-else><em>Empty list</em></p>
+
+        </div>
+
+    </div>
+    <!-- <img src="img/logo-vue.png" alt="Vue.js logo" class="vue-logo"> -->
+ <script src="js/script.js"></script>  
+    
+</body>
+</html>
