@@ -27,7 +27,8 @@
     <div id="app">
         <!-- Input to add new To-Do -->
         <div class="input-addlist">
-            <input type="text" placeholder="Add new To-do" minlength="3"> <i class="fas fa-plus-circle" title="Add"></i>
+            <input type="text" @keyup.enter="addToDo" placeholder="Add new To-do" minlength="3">
+            <i class="fas fa-plus-circle" title="Add"></i>
         </div>
 
         <!-- Included To-Do-List -->
@@ -39,7 +40,7 @@
                     <span>&middot; {{ toDo }}</span>
                     <i class="fas fa-times" @click="deleteToDo(index)" title="Remove"></i>
                 </li>
-                <span class="remove-btn" @click="removeAllToDo(index)">Remove All</span>
+                <span class="remove-btn" @click="removeAllToDo()">Remove All</span>
             </ul>
             <p v-else><em>Empty list</em></p>
             
@@ -53,11 +54,11 @@
                 <li v-for="(removed, index) in removedToDo">
                     <span>{{ removed }}</span> 
                     <div class="icons">
-                        <i class="fas fa-trash-restore-alt" @click="restoreToDo(index)" title="Restore item"></i>
+                        <i class="fas fa-trash-restore-alt" @click="restoreToDoDeleted(index)" title="Restore item"></i>
                         <i class="fas fa-times" @click="deleteToDoDeleted(index)" title="Delete"></i>
                     </div>
                 </li>
-                <span class="remove-btn">Permanently delete</span>
+                <span class="remove-btn" @click="permanentlyDelete()">Permanently delete</span> - <span class="remove-btn" @click="restoreAllDeleted()">Restore All</span>
             </ul>
             <p v-else><em>Empty list</em></p>
 

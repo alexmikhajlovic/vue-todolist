@@ -15,15 +15,30 @@ var app = new Vue({
             this.toDoList.splice(index,1);
             console.log(this.removedToDo);
         },
-        restoreToDo(index) {
-            this.toDoList.push(this.removedToDo[index]);
-            this.removedToDo.splice(index,1);
+        removeAllToDo() {
+            this.toDoList.forEach(element => {
+                this.removedToDo.push(element);
+            });
+            this.toDoList.splice(0);
         },
         deleteToDoDeleted(index) {
             this.removedToDo.splice(index,1);
         },
-        removeAllToDo(index) {
-            this.toDoList.splice(index,this.toDoList.length);
+        restoreToDoDeleted(index) {
+            this.toDoList.push(this.removedToDo[index]);
+            this.removedToDo.splice(index,1);
+        },
+        permanentlyDelete() {
+            this.removedToDo.splice(0);
+        },
+        restoreAllDeleted() {
+            this.removedToDo.forEach(element => {
+                this.toDoList.push(element);
+            });
+            this.removedToDo.splice(0);
+        },
+        addToDo() {
+            this.toDoList.push(this.newToDo);
         }
     }
 });
