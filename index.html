@@ -18,7 +18,7 @@
         <img src="img/logo-alex.jpg" alt="Alex's logo">
         <div class="socials">
             <a href="https://github.com/alexmikhajlovic" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/alexmikhajlovic" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
             <a href="https://instagram.com/alexmikhajlovic" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
             <a href="http://" target="_blank" rel="noopener noreferrer"><i class="fab fa-vuejs"></i></a>
         </div>
@@ -27,8 +27,8 @@
     <div id="app">
         <!-- Input to add new To-Do -->
         <div class="input-addlist">
-            <input type="text" @keyup.enter="addToDo" placeholder="Add new To-do" minlength="3">
-            <i class="fas fa-plus-circle" title="Add"></i>
+            <input type="text" @keyup.enter="addToDo" v-model="newToDo" placeholder="Add new To-do" minlength="3">
+            <i class="fas fa-plus-circle" @click="addToDo" title="Add"></i>
         </div>
 
         <!-- Included To-Do-List -->
@@ -36,11 +36,14 @@
             <h1> <i class="fas fa-list-ul"></i> To-Do List </h1>
 
             <ul v-if="toDoList.length > 0">
+
                 <li v-for="(toDo,index) in toDoList">
                     <span>&middot; {{ toDo }}</span>
                     <i class="fas fa-times" @click="deleteToDo(index)" title="Remove"></i>
                 </li>
-                <span class="remove-btn" @click="removeAllToDo()">Remove All</span>
+
+                <span class="remove-btn" @click="removeAllToDo()"><i class="fas fa-times"></i> Remove All</span>
+
             </ul>
             <p v-else><em>Empty list</em></p>
             
@@ -51,6 +54,7 @@
             <h2> <i class="fas fa-trash-alt"></i> Deleted </h2>
 
             <ul v-if="removedToDo.length > 0">
+
                 <li v-for="(removed, index) in removedToDo">
                     <span>{{ removed }}</span> 
                     <div class="icons">
@@ -58,7 +62,8 @@
                         <i class="fas fa-times" @click="deleteToDoDeleted(index)" title="Delete"></i>
                     </div>
                 </li>
-                <span class="remove-btn" @click="permanentlyDelete()">Permanently delete</span> - <span class="remove-btn" @click="restoreAllDeleted()">Restore All</span>
+
+                <span class="remove-btn" @click="permanentlyDelete()"><i class="fas fa-times"></i> Permanently delete</span> - <span class="remove-btn" @click="restoreAllDeleted()"><i class="fas fa-trash-restore-alt"></i> Restore All</span>
             </ul>
             <p v-else><em>Empty list</em></p>
 

@@ -15,6 +15,7 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+/* Socials box */
 header .socials i{
     font-size: 2rem;
     padding: 0 10px;
@@ -30,8 +31,10 @@ header .socials i:focus{
 #app {
     padding: 10px;
 }
+/* input */
 .input-addlist{
     text-align: right;
+    padding: 20px 0;
 }
 .input-addlist input {
     text-align: center;
@@ -41,20 +44,17 @@ header .socials i:focus{
     background-color: transparent;
     color: grey;
 }
+@media screen and (max-width: 600px) {
+    .input-addlist {
+      text-align: center;
+    }
+  }
 
-
-
-
-
-
-
-
+/* !!! Reusable classes !!! */
 img{height: 100%;}
+
 ul{
     margin: 30px 0;
-    /* background-color: #58595b; */
-    /* -webkit-box-shadow: 0px 0px 20px 0px rgba(255,255,255,0.5); 
-    box-shadow: 0px 0px 20px 0px rgba(255,255,255,0.5); */
     border-radius: 10px;
 }
 ul li{
@@ -69,8 +69,12 @@ ul li{
 ul li:hover{
     border-bottom: 1px solid white;
 }
+
 i {cursor: pointer;}
+
 p {margin: 20px 0;}
+
+/* Mini buttons */
 .remove-btn {
     font-size: 10px;
     opacity: 0.5;
